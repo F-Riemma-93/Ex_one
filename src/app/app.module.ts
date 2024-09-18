@@ -10,7 +10,10 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoggedComponent } from './components/logged/logged.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';  // Importa MatFormFieldModule
-import { MatInputModule } from '@angular/material/input';  // Importa MatInputModule
+import { MatInputModule } from '@angular/material/input';
+import { ClientPareggioComponent } from './components/client-pareggio/client-pareggio.component';
+import { ClientGoalComponent } from './components/client-goal/client-goal.component';
+import { GestionePartitaComponent } from './components/gestione-partita/gestione-partita.component';  // Importa MatInputModule
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import { MatInputModule } from '@angular/material/input';  // Importa MatInputMo
     HomeComponent,
     RegistrationComponent,
     LoggedComponent,
+    ClientPareggioComponent,
+    ClientGoalComponent,
+    GestionePartitaComponent,
   ],
   imports: [
     BrowserModule,

@@ -41,6 +41,10 @@ export class UserLoginService {
     return this.loggedInUser;
   }
 
+  setLoggedInUser(user: User){
+    this.loggedInUser = user;
+  }
+
   // Metodo per caricare gli utenti dal localStorage
   private loadUsersFromLocalStorage(): void {
     const storedUsers = localStorage.getItem('users');

@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ClientPareggioComponent } from './components/client-pareggio/client-pareggio.component';
 import { ClientGoalComponent } from './components/client-goal/client-goal.component';
 import { GestionePartitaComponent } from './components/gestione-partita/gestione-partita.component';  // Importa MatInputModule
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { GestionePartitaComponent } from './components/gestione-partita/gestione
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

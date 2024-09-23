@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserLoginService } from '../../services/user-login.service';
+import { UserLoginAPIService } from 'src/app/services/user-login-api.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 
@@ -13,7 +14,8 @@ export class RegistrationComponent {
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder, 
-    private userLoginService: UserLoginService,
+    //private userLoginService: UserLoginService,
+    private userLoginAPIService: UserLoginAPIService,
     private router: Router 
   ) {
     this.registrationForm = this.fb.group({
@@ -34,13 +36,21 @@ export class RegistrationComponent {
   onSubmit() {
     if (this.registrationForm.valid) {
       const newUser: User = this.registrationForm.value;
-      this.userLoginService.addUser(newUser); // Aggiungi l'utente al servizio
-      console.log('User registered successfully!', newUser);
-      this.registrationForm.reset(); // Resetta il modulo
-      this.router.navigate(['/home']); // Reindirizza alla home page
-    } else {
-      console.log('Form is invalid');
+      
+      //OLD this.userLoginService.addUser(newUser); // Aggiungi l'utente al servizio
+      this.userLoginAPIService.register(newUser).subscribe(
+        (response) => {
+          console.log('User registered successfully!', newUser);
+          this.registrationForm.reset(); // Resetta il modulo
+          this.router.navigate(['/home']); // Reindirizza alla home page
+        },
+        (error) => {
+          alert('Errore durante la registrazione: ' + error.message);
+          //this.registrationForm.reset(); // Resetta il modulo
+        }
+      );
     }
+
   }
 
 }

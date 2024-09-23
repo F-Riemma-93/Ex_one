@@ -14,12 +14,12 @@ export class UserLoginAPIService {
 
   // Metodo per la registrazione
   register(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user).pipe(
+    return this.http.post(this.apiUrl+"/register", user).pipe(
       catchError(error => {
         // Gestisci l'errore qui, ad esempio, loggando o trasformando l'errore
         console.error('Errore durante la registrazione:', error);
 
-        alert('Si è verificato un errore durante la registrazione. Per favore, riprova più tardi. ' + error);
+        //alert('Si è verificato un errore durante la registrazione. Per favore, riprova più tardi. ' + error);
   
         // Ritorna un Observable con un errore per il chiamante
         return throwError(() => new Error('Errore nella registrazione dell\'utente.'));

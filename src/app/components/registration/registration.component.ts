@@ -14,7 +14,7 @@ export class RegistrationComponent {
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder, 
-    //private userLoginService: UserLoginService,
+    private userLoginService: UserLoginService,
     private userLoginAPIService: UserLoginAPIService,
     private router: Router 
   ) {
@@ -36,6 +36,27 @@ export class RegistrationComponent {
   onSubmit() {
     if (this.registrationForm.valid) {
       const newUser: User = this.registrationForm.value;
+  
+      const userAdded = this.userLoginService.addUser(newUser); // Prova ad aggiungere l'utente
+  
+      if (userAdded) {
+        console.log('User registered successfully!', newUser);
+        this.registrationForm.reset(); // Resetta il modulo
+        this.router.navigate(['/home']); // Reindirizza alla home page
+      } else {
+        alert('Errore: utente già esistente!');
+      }
+  
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  /*
+  TEST - Implementazione API Registrazione 
+  onSubmit() {
+    if (this.registrationForm.valid) {
+      const newUser: User = this.registrationForm.value;
       
       //OLD this.userLoginService.addUser(newUser); // Aggiungi l'utente al servizio
       this.userLoginAPIService.register(newUser).subscribe(
@@ -52,5 +73,5 @@ export class RegistrationComponent {
     }
 
   }
-
+  */
 }

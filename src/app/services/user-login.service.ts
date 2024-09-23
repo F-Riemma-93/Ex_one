@@ -20,10 +20,18 @@ export class UserLoginService {
   }
 
   // Metodo per aggiungere un utente
-  addUser(user: User): void {
+  addUser(user: User): boolean {
+    const existingUser = this.users.find(u => u.username === user.username && u.password === user.password);
+    
+    if (existingUser) {
+      return false; // L'utente esiste già
+    }
+    
     this.users.push(user);
     this.updateLocalStorage(); // Aggiorna il localStorage
     this.usersSubject.next(this.users);
+    
+    return true; // Utente aggiunto con successo
   }
 
   // Metodo per simulare il login di un utente

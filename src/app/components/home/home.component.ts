@@ -26,6 +26,21 @@ export class HomeComponent {
   login() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
+      if (this.userLoginService.login(username, password)) {
+        this.router.navigate(['/logged']);
+      } else {
+        alert('Invalid credentials');
+      }
+    }
+  }
+
+  /* 
+  TEST - implementazione API login
+  login() {
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.userLoginService.login(username, password);
+
       this.userLoginAPIService.login(username, password).subscribe(
         response => {
           // Se il login ha successo, naviga alla pagina successiva
@@ -39,4 +54,5 @@ export class HomeComponent {
       );
     }
   }
+  */
 }

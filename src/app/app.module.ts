@@ -15,6 +15,8 @@ import { ClientPareggioComponent } from './components/client-pareggio/client-par
 import { ClientGoalComponent } from './components/client-goal/client-goal.component';
 import { GestionePartitaComponent } from './components/gestione-partita/gestione-partita.component';  // Importa MatInputModule
 import { HttpClientModule } from '@angular/common/http';
+import { UserLoginService } from './services/user-login.service';
+import { UserLoginAPIService } from './services/user-login-api.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    UserLoginService, 
+    UserLoginAPIService]
+    ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
